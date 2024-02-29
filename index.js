@@ -6,26 +6,26 @@ const app = express(); // o express é chamado para criar a aplicação
 app.use(bodyParser.json())// isso  é usado para que o corpo da requisição seja interpretado como json
 
 let cadastros = [
-     { nome: 'Joao', idade: 25 },
-    { nome: 'Maria', idade: 30 },
-    { nome: 'Pedro', idade: 18 },
-    { nome: 'Ana', idade: 25 },
-    { nome: 'Carlos', idade: 30 },
-    { nome: 'Julia', idade: 18 },
-    { nome: 'Mariana', idade: 25 },
-    { nome: 'Lucas', idade: 18 },
-    { nome: 'Beatriz', idade: 30 },
-    { nome: 'Rodrigo', idade: 25 },
-    { nome: 'Fernanda', idade: 30 },
-    { nome: 'Gustavo', idade: 18 },
-    { nome: 'Amanda', idade: 25 },
-    { nome: 'Rafael', idade: 18 },
-    { nome: 'Larissa', idade: 30 },
-    { nome: 'Diego', idade: 25 },
-    { nome: 'Camila', idade: 18 },
-    { nome: 'Guilherme', idade: 30 },
-    { nome: 'Isabela', idade: 25 },
-    { nome: 'Vinicius', idade: 18 }
+    { nome: 'Joao', idade: 25, cidade: "Juazeiro do Norte" },
+    { nome: 'Maria', idade: 30, cidade: "Crato" },
+    { nome: 'Pedro', idade: 18, cidade: "Barbalha" },
+    { nome: 'Ana', idade: 25 , cidade: "Juazeiro do Norte"},
+    { nome: 'Carlos', idade: 30 , cidade: "Iguatu"},
+    { nome: 'Julia', idade: 18 , cidade: "Pau dos ferros"},
+    { nome: 'Mariana', idade: 25 , cidade: "Barbalha"},
+    { nome: 'Lucas', idade: 18 , cidade: "Missão Velha"},
+    { nome: 'Beatriz', idade: 30 , cidade: "Crato"},
+    { nome: 'Rodrigo', idade: 25 , cidade: "Iguatu"},
+    { nome: 'Fernanda', idade: 30 , cidade: "Barbalha"},
+    { nome: 'Gustavo', idade: 18 , cidade: "Juazeiro do Norte"},
+    { nome: 'Amanda', idade: 25 , cidade: "Natal"},
+    { nome: 'Rafael', idade: 18 , cidade: "Missão Velha"},
+    { nome: 'Larissa', idade: 30 , cidade: "Juazeiro do Norte"},
+    { nome: 'Diego', idade: 25 , cidade: "Barbalha"},
+    { nome: 'Camila', idade: 18 , cidade: "Natal"},
+    { nome: 'Guilherme', idade: 30 , cidade: "Juazeiro do Norte"},
+    { nome: 'Isabela', idade: 25 , cidade: "Natal"},
+    { nome: 'Vinicius', idade: 18 , cidade: "Crato"}
 
 ]
 
@@ -59,6 +59,8 @@ app.post('/cadastro', (req,res)=>{
 
     cadastros.push(novoCadastro);// add o novo cadastro ao final do vetor
     return res.json(cadastros); // retornando o array  de todos os cadastros
+
+    //Lembrar de vaildar quando o cadastro que for  passada já exista no array
 })
 
 // Rota que filtro por idade
@@ -70,6 +72,8 @@ app.get('/cadastros/idade/:idade', (req, res)=>{
         return dado.idade === parametroIdade
     })
     return res.json(filtradosPorIdade)
+
+    //Lembrar de vaildar quando a idade que for  passada na exista no array
 })
 
 
@@ -82,5 +86,19 @@ app.get('/cadastros/nome/:nome', (req, res)=>{
     })
     return res.json(filtrandoPorNome)
 })
+
+app.get('/cadastros/cidades/:cidade', (req,res)=> {
+    
+    const {cidade} = req.params;
+    const filtroCidades = cadastros.filter((NomeCidade)=> {
+        
+        return NomeCidade.cidade === cidade
+    })
+    res.json(filtroCidades);
+
+    //Lembrar de vaildar quando a cidade que for  passada na exista no array
+})
+
+
 //http://localhost:3000/cadastro/1
 app.listen(3000 , ()=> console.log("Servidor iniciado"));

@@ -41,7 +41,7 @@ app.get('/cadastro/:id', (req, res) =>{// :id  é um parametro dinamico que vai 
     let id = req.params.id;//  isso faz  com que o parametro seja passado na url e possa ser usado no codigo
     
    if(isNaN(id)){ // verifica se é um numero Ex: se  a variavel id for uma string vazia ou null
-       return res.send({message:("Id invalido")}); // ploca a resposta com innvalido
+       return res.send({message:("Id invalido")}); // tráz a resposta com invalido
    }
 
    let indice = parseInt(id); // isso transforma o paramentro em int para poder usar como index do array

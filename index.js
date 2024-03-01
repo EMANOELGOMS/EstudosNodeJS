@@ -97,7 +97,7 @@ app.get('/cadastros/idade/:idade', (req, res)=>{
 app.get('/cadastros/nome/:nome', (req, res)=>{
     const {nome} = req.params;
 
-    const filtrandoPorNome = cadastros.filter((NomePessoa)=> NomePessoa.nome === nome) // retorna um vetor com as pessoas que existe
+    const filtrandoPorNome = cadastros.filter((NomePessoa)=> NomePessoa.nome.toLowerCase() === nome.toLowerCase()) // retorna um vetor com as pessoas que existe
 
     if(filtrandoPorNome.length === 0){  // caso o nome pesquisado não exita  no array ele retorna esse erro
         return res.status(404).send({message:"Nome não encontrado"})
@@ -111,7 +111,7 @@ app.get('/cadastros/cidades/:cidade', (req,res)=> {
     
     const {cidade} = req.params;
 
-    const filtroCidades = cadastros.filter((NomeCidade)=> NomeCidade.cidade === cidade) // trazendo as informações das cidades que são iguais a que foi pesquisadas
+    const filtroCidades = cadastros.filter((NomeCidade)=> NomeCidade.cidade.toLowerCase() === cidade.toLowerCase()) // trazendo as informações das cidades que são iguais a que foi pesquisadas
 
     if (filtroCidades.length === 0) { // quando a cidade  não for encontrada retorna mensagem de erro a busca é feito pelo tamanho de array
         return res.status(404).send({message:"Cidade não encotrada"});

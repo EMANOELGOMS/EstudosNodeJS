@@ -123,9 +123,5 @@ routerCadastro.get('/cadastros/cidades/:cidade', (req,res)=> {
 
  })
 
-
-//http://localhost:3000/cadastro/1
-//routerCadastro.listen(3001 , ()=> console.log("Servidor iniciado"));
-
 module.exports = routerCadastro;
 

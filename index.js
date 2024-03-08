@@ -16,6 +16,4 @@ app.use(express.urlencoded({extended: true})) //comando que permite que os dados
 app.use(profRotas)
 app.use(routerCadastro)
 
-
-
 app.listen(3001, () => console.log("Servidor iniciado"));

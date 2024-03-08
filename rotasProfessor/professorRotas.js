@@ -91,7 +91,4 @@ profRotas.post('/professor', (req,res)=> {
 
 })
 
-//http:localhost:3000/professor/
-//profRotas.listen(3000,() => (console.log("servidor rodando")))
-
 module.exports = profRotas;
